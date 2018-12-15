@@ -76,25 +76,31 @@ review
 
 returns an object with the following methods:
 
+---
 
 
 `complete`
 
 returns a `boolean` if the checklist is complete
 
+---
 
 `completed`
 
 returns an `array` of the completed events
 
+---
 
 `length`
 
 returns the number of events
 
+---
+
 
 `percent`
 
+---
 
 returns percent complete
 

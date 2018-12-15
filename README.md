@@ -5,13 +5,6 @@ programmable, listenable checklists with forms for `jQuery`.
 
 ### Example
 
-@todo
-
-```
-
-
-
-```
 
 
 ### Public API Methods

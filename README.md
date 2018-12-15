@@ -74,7 +74,7 @@ markIncomplete
 review
 ```
 
-returns an object with the following methods:
+#### Review return object
 
 ---
 
@@ -100,7 +100,6 @@ returns the number of events
 
 `percent`
 
----
 
 returns percent complete
 

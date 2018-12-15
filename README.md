@@ -23,7 +23,7 @@ register
 register an event. 
 
 
-`handle` - string, require
+`handle` - string, required
 
 
 `message` - string, optional
@@ -47,6 +47,8 @@ deregister
 ```
 
 
+Deregister an event.
+
 ---
 
 
@@ -54,7 +56,8 @@ deregister
 markComplete
 ```
 
-accepts a string, the event's handle.
+Mark an event as complete. 
+
 
 `name`  - string, the name of the object 
 
@@ -67,6 +70,9 @@ markIncomplete
 ```
 
 
+Mark an event as incomplete.
+
+
 ---
 
 
@@ -74,26 +80,26 @@ markIncomplete
 review
 ```
 
-#### Review return object
+###### Review return object
 
 ---
 
 
 `complete`
 
-returns a `boolean` if the checklist is complete
+Returns a `true` or `false` depending on if the all events are marked as complete. 
 
 ---
 
 `completed`
 
-returns an `array` of the completed events
+Returns an `array` of the completed events.
 
 ---
 
 `length`
 
-returns the number of events
+Returns the number of events.
 
 ---
 
@@ -101,7 +107,7 @@ returns the number of events
 `percent`
 
 
-returns percent complete
+Returns the percent completed.
 
 
 ---
@@ -113,10 +119,7 @@ listen
 ```
 
 
-accepts a `callback` function that fires whenever the `form` is changed.
-
-
----
+Accepts a `callback` function that fires whenever the `form` is changed.
 
 
 ---

@@ -56,7 +56,9 @@ markComplete
 
 accepts a string, the event's handle.
 
-`string`  - the name of the object 
+`name`  - string, the name of the object 
+
+
 ---
 
 
@@ -73,9 +75,6 @@ review
 ```
 
 returns an object with the following methods:
-
-
----
 
 
 

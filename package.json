@@ -1,5 +1,5 @@
 {
-  "name": "steps",
+  "name": "jquery-steps",
   "version": "0.0.2",
   "description": "scriptable checklist form",
   "main": "Gruntfile.js",

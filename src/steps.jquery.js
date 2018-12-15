@@ -19,17 +19,20 @@
         var settings = $.extend({
             // The messages array.
             // Included for preloading message objects.
-            'events': [],
+            'events': [{
+                handle: 'handle',
+                message: 'message'
+            }],
             // should the message flash or stayput
             'flash': false,
             // if flashing, how long
             'flashDuration': 1000
         }, options);
 
-        var uniqueId = Date.now() * Math.random();
+        var timestamp = Date.now();
 
         // the form id
-        var formId = "steps-checklist-' + uniqueId";
+        var formId = "steps-checklist-" + timestamp;
 
         // will hold the form object
         var $form;
@@ -69,7 +72,7 @@
          * @return {null}
          */
         var createForm = function() {
-            $('body').append('<form id="' + formId + '" class="steps-checklist" style="display:none" data-uid="' + uniqueId + '"></form>');
+            $('body').append('<form id="' + formId + '" class="steps-checklist" style="display:none" data-uid="' + timestamp + '"></form>');
             return $('#' + formId);
         };
 
@@ -77,8 +80,9 @@
          * Adds checkboxes to the form
          */
         var addToForm = function(handle) {
-            $form.append('<input type="checkbox" id="steps-checklist-' + uniqueId + '--' + handle + '" class="steps-checkbox steps-checklist-' + uniqueId + '--' + handle + '">');
-            return $('#' + 'steps-checklist-' + uniqueId + '--' + handle);
+            document.getElementById('#' + formId).innerHTML = '<input>';
+            $('#' + formId).append('<input type="checkbox" id="steps-checklist-' + timestamp + '--' + handle + '" class="steps-checkbox steps-checklist-' + timestamp + '--' + handle + '">');
+            return $('#' + 'steps-checklist-' + timestamp + '--' + handle);
         };
 
         var isFormComplete = function() {
@@ -93,7 +97,7 @@
         var findCompleted = function() {
             var count = 0;
             if ($form.length > 0) {
-                $('#steps-checklist-' + uniqueId + ' :input').each(function() {
+                $('#steps-checklist-' + timestamp + ' :input').each(function() {
                     var $input = $(this);
                     if (($input).is(":checked")) {
                         count++;
@@ -120,7 +124,7 @@
 
         var init = function() {
             $form = createForm();
-            events.forEach(function(value, index, array) {
+            settings.events.forEach(function(value, index, array) {
                 markDefault(value);
                 addToForm(value.handle);
             });
@@ -169,7 +173,7 @@
                 var event = settings.events.splice(index, 1);
 
                 // remove dom element from form
-                $input = $('#steps-checklist-' + uniqueId + '--' + handle);
+                $input = $('#steps-checklist-' + timestamp + '--' + handle);
                 if ($input.length > 0) {
                     $input.remove();
                 }
@@ -184,7 +188,7 @@
              * @return {bool}
              * // @TODO create queue
              */
-            mark: function(handle) {
+            markComplete: function(handle) {
 
                 // find the event
                 var index = findByKey(settings.events, 'handle', handle);
@@ -201,14 +205,14 @@
                 eventObject.complete = true;
 
                 // mark checkbox complete
-                $("#steps-checklist-" + uniqueId + "--" + handle).prop('checked', true).trigger('change');
+                $("#steps-checklist-" + timestamp + "--" + handle).prop('checked', true).trigger('change');
 
                 // return the event object
                 return eventObject;
 
                 // end of the `mark` method
             },
-            unmark: function(handle) {
+            unmarkIncomplete: function(handle) {
 
                 // find the event
                 var index = findByKey(settings.events, 'handle', handle);
@@ -225,7 +229,7 @@
                 eventObject.complete = false;
 
                 // mark checkbox complete
-                $("#steps-checklist-" + uniqueId + "--" + handle).prop('checked', false).trigger('change');
+                $("#steps-checklist-" + timestamp + "--" + handle).prop('checked', false).trigger('change');
 
                 // return the event object
                 return eventObject;
@@ -246,7 +250,7 @@
 
             },
             /**
-             * Hook that triggers on form change.
+             * triggers on form change.
              * @return {[type]} [description]
              */
             listen: function(fn) {

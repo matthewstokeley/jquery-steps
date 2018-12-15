@@ -1,0 +1,32 @@
+<button id="register" onclick="register(event)">register</button>
+<button id="review" onclick="review(event)">review</button>
+<button id="complete" onclick="complete(event)">complete</button>
+<div class="steps"></div>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script src="./src/steps.jquery.js"></script>
+
+  <script>
+  	
+
+  	var steps;
+
+  	var register = (event) => {
+	  	steps = $('.steps').steps();
+
+  	}
+
+  	var review = (event) => {
+  		steps.register({
+  			handle: 'name'
+  		})
+  	}
+
+  	var complete = (event) => {
+  		steps.mark('name');
+  	}
+
+  </script>
